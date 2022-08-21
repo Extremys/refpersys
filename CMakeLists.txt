@@ -71,7 +71,10 @@ list(SORT RPS_CORE_HEADERS)
 #message("${RPS_BISON_SOURCES}")
 
 if (APPLE)
-  add_executable(${EXE_NAME} MACOSX_BUNDLE ${RPS_CORE_HEADERS} ${RPS_CORE_SOURCES} ${RPS_JSONRPC_SOURCES} ${RPS_BISON_SOURCES})
+  add_executable(${EXE_NAME} MACOSX_BUNDLE #${RPS_CORE_HEADERS} 
+                                           ${RPS_CORE_SOURCES} 
+                                           ${RPS_JSONRPC_SOURCES} 
+                                           ${RPS_BISON_SOURCES})
   target_link_libraries(${EXE_NAME} "-framework cocoa")
 else ()
   add_executable(${EXE_NAME} ${RPS_CORE_HEADERS} ${RPS_CORE_SOURCES} ${RPS_JSONRPC_SOURCES} ${RPS_BISON_SOURCES})
