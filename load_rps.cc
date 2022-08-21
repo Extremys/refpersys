@@ -1197,11 +1197,11 @@ Rps_Loader::parse_manifest_file(void)
                 }
               else
                 {
-                  if (pluginsostat.st_mtim.tv_sec < pluginsrcstat.st_mtim.tv_sec)
-                    needbuild = true;
-                  else if (pluginsostat.st_mtim.tv_sec == pluginsrcstat.st_mtim.tv_sec
-                           && pluginsostat.st_mtim.tv_nsec <=  pluginsrcstat.st_mtim.tv_nsec)
-                    needbuild = true;
+                  // if (pluginsostat.st_mtim.tv_sec < pluginsrcstat.st_mtim.tv_sec)
+                  //   needbuild = true;
+                  // else if (pluginsostat.st_mtim.tv_sec == pluginsrcstat.st_mtim.tv_sec
+                  //          && pluginsostat.st_mtim.tv_nsec <=  pluginsrcstat.st_mtim.tv_nsec)
+                  //   needbuild = true;
                   if (needbuild)
                     RPS_INFORMOUT("should rebuild plugin #" << ix << " into " << pluginsopath << " from source " << pluginsrcpath);
                 }

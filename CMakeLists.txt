@@ -32,7 +32,12 @@ include_directories(${LIBBACKTRACE_DIR}/include)
 link_directories(${LIBBACKTRACE_DIR}/lib)
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(JSONCPP jsoncpp)
+pkg_check_modules(JSONCPP REQUIRED jsoncpp)
+#/opt/homebrew/Cellar/jsoncpp/1.9.5/lib/
+include_directories(${JSONCPP_INCLUDE_DIRS})
+link_directories(${JSONCPP_LIBRARY_DIRS})
+
+
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE) # these are to use the prefered -pthread flag
 set(THREADS_PREFER_PTHREAD_FLAG TRUE) # over the -lpthread option
@@ -73,8 +78,8 @@ else ()
 endif (APPLE)
 
 
-
+target_compile_options(${EXE_NAME} PUBLIC ${JSONCPP_CFLAGS_OTHER})
 target_include_directories(${EXE_NAME} PUBLIC ${FLTK_INCLUDE_DIRS} ${JSONCPP_INCLUDE_DIRS} ${LIBARGP_DIR}/include ${LIBUNISTRING_DIR}/include ${LIBUNISTRING_DIR}/include)
-target_link_libraries(${EXE_NAME} fltk Threads::Threads ${JSONCPP_LIBRARIES} argp unistring backtrace)
+target_link_libraries(${EXE_NAME} fltk Threads::Threads jsoncpp argp unistring backtrace)
 
 
