@@ -727,9 +727,9 @@ main (int argc, char** argv)
       }
     if (rps_disable_aslr)
       {
-        if (personality(ADDR_NO_RANDOMIZE) == -1)
-          RPS_FATAL("%s failed to disable ASLR: %m", rps_progname);
-        else
+        //if (personality(ADDR_NO_RANDOMIZE) == -1)
+        //  RPS_FATAL("%s failed to disable ASLR: %m", rps_progname);
+        //else
           RPS_INFORM("%s disabled ASLR (git %s).", rps_progname, rps_gitid);
       }
   }
@@ -758,7 +758,7 @@ main (int argc, char** argv)
       fprintf(stderr, "%s failed to make backtrace state.\n", rps_progname);
       exit(EXIT_FAILURE);
     }
-  pthread_setname_np(pthread_self(), "rps-main");
+  pthread_setname_np("rps-main");
   // hack to handle debug flag as first program argument
   if (argc>1 && !strncmp(argv[1], "--debug=", strlen("--debug=")))
     rps_set_debug(std::string(argv[1]+strlen("--debug=")));
@@ -803,10 +803,10 @@ main (int argc, char** argv)
                  rps_dumpdir_str.c_str(), cwdbuf);
       rps_dump_into(rps_dumpdir_str);
     }
-  asm volatile (".globl rps_end_of_main; .type rps_end_of_main, @function");
-  asm volatile ("rps_end_of_main: nop; nop; nop; nop; nop; nop");
-  asm volatile (".size rps_end_of_main, . - rps_end_of_main");
-  asm volatile ("nop; nop; nop;");
+  //asm volatile (".globl rps_end_of_main; .type rps_end_of_main, @function");
+  //asm volatile ("rps_end_of_main: nop; nop; nop; nop; nop; nop");
+  //asm volatile (".size rps_end_of_main, . - rps_end_of_main");
+  //asm volatile ("nop; nop; nop;");
   if (rps_debug_file)
     fflush(rps_debug_file);
   RPS_INFORM("end of RefPerSys process %d on host %s\n"
@@ -1052,7 +1052,7 @@ rps_parse1opt (int key, char *arg, struct argp_state *state)
                     << " last git commit: " << rps_lastgitcommit << std::endl
                     << " md5sum of " << nbfiles << " source files: " << rps_md5sum << std::endl
                     << " with " << nbsubdirs << " subdirectories." << std::endl
-                    << " GNU glibc: " << gnu_get_libc_version() << std::endl
+                    //<< " GNU glibc: " << gnu_get_libc_version() << std::endl
                     << " parser generator: " << rps_gnubison_version << std::endl
 		    << " default GUI script: " << rps_gui_script_executable << std::endl
                     << " Read Eval Print Loop: " << rps_repl_version() << std::endl
@@ -1097,7 +1097,7 @@ rps_parse_program_arguments(int &argc, char**argv)
     " along with this program.  If not, see www.gnu.org/licenses\n"
     " *** NO WARRANTY, not even for FITNESS FOR A PARTICULAR PURPOSE ***\n"
     " +++!!! use at your own risk !!!+++\n"
-    " (shortgitid " RPS_SHORTGITID " built at " __DATE__ ")\n"
+    " (shortgitid " RPS_GITID " built at " __DATE__ ")\n"
     "\n Accepted program options are:\n";
   argparser_rps.children = nullptr;
   argparser_rps.help_filter = nullptr;
