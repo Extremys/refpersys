@@ -95,10 +95,10 @@
 #include <dlfcn.h>
 #include <dirent.h>
 #include <pthread.h>
-#include <sys/personality.h>
+//#include <sys/personality.h>
 
 // http://man7.org/linux/man-pages/man3/gnu_get_libc_version.3.html
-#include <gnu/libc-version.h>
+//#include <gnu/libc-version.h>
 
 
 // for programmatic C++ name demangling, see also
@@ -119,15 +119,15 @@
 
 
 // mark unlikely conditions to help optimization
-#ifdef __GNUC__
+//#ifdef __GNUC__
 #define RPS_UNLIKELY(P) __builtin_expect(!!(P),0)
 #define RPS_LIKELY(P) !__builtin_expect(!(P),0)
 #define RPS_UNUSED __attribute__((unused))
-#else
-#define RPS_UNLIKELY(P) (P)
-#define RPS_LIKELY(P) (P)
-#define RPS_UNUSED
-#endif
+//#else
+//#define RPS_UNLIKELY(P) (P)
+//#define RPS_LIKELY(P) (P)
+//#define RPS_UNUSED
+//#endif
 
 #define RPS_FRIEND_CLASS(Suffix) friend class Rps_##Suffix
 

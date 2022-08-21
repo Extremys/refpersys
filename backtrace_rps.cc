@@ -31,6 +31,8 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ******************************************************************************/
 
+//#include <libgen.h>
+#include <filesystem>
 #include "refpersys.hh"
 
 
@@ -221,9 +223,9 @@ Rps_Backtracer::pc_to_string(uintptr_t pc, bool* gotmain)
           std::string funamestr;
           int delta = pc - (uintptr_t) dif.dli_saddr;
           if (dif.dli_fname && strstr(dif.dli_fname, ".so"))
-            filnamestr = std::string(basename(dif.dli_fname));
+            filnamestr = std::filesystem::path(dif.dli_fname).stem();//.filename(); //std::string(basename(dif.dli_fname));
           else if (dif.dli_fname && strstr(dif.dli_fname, rps_progname))
-            filnamestr = std::string(basename(rps_progname));
+            filnamestr = std::filesystem::path(rps_progname).stem();//std::string(basename(rps_progname));
           if (dif.dli_sname != nullptr)
             {
               if (dif.dli_sname[0] == '_')
