@@ -72,6 +72,9 @@
 #include <locale>
 
 #include <cassert>
+//#include <cstdint>
+#include <stdint.h>
+//#include <inttypes.h>
 #include <cstring>
 #include <cmath>
 #include <cstdio>
@@ -113,7 +116,7 @@
 
 // GNU libunistring https://www.gnu.org/software/libunistring/
 // we use UTF-8 strings
-#include "unistr.h"
+//#include "unistr.h"
 
 #include "backtrace.h"
 
@@ -1122,7 +1125,7 @@ operator << (std::ostream&out, Rps_ObjectRef obr)
 unsigned constexpr rps_nb_constants = RPS_NB_CONSTANT_OB;
 
 ////////////////////////////////////////////////////////////////
-enum class Rps_Type : std::int16_t
+enum class Rps_Type : std::int16_t //std::u16string
 {
   CallFrame = std::numeric_limits<std::int16_t>::min(),
   ////////////////

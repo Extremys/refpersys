@@ -40,6 +40,9 @@
 #error wrong direct inclusion of "inline_rps.hh"
 #endif /*REFPERSYS_INCLUDED*/
 
+// GNU libunistring https://www.gnu.org/software/libunistring/
+// we use UTF-8 strings
+#include "unistr.h"
 
 //////////////////////////////////////////////////////////// time functions
 // see http://man7.org/linux/man-pages/man2/clock_gettime.2.html
