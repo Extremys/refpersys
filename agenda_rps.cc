@@ -164,7 +164,9 @@ Rps_Agenda::run_agenda_worker(int ix)
   char pthname[16];
   memset (pthname, 0, sizeof(pthname));
   snprintf(pthname, sizeof(pthname), "rps-agw#%hd", (short) ix);
-  pthread_setname_np(pthread_self(), pthname);
+  //pthread_setname_np(pthread_self(), pthname);
+  pthread_setname_np(pthname);
+  //set_thread_name(pthread_setname_np, pthname);
   RPS_LOCALFRAME(RPS_ROOT_OB(_1aGtWm38Vw701jDhZn), //the_agenda,
                  nullptr, // no caller frame
                  Rps_ObjectRef obtasklet;
